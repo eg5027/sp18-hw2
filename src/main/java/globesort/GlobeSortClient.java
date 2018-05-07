@@ -52,9 +52,9 @@ public class GlobeSortClient {
 	IntArray response = serverStub.sortIntegers(request);
 	
 	float finish = System.currentTimeMillis();
-	float runtime = finish - start;
+	float runtime = (finish - start)/1000;
 	System.out.println("Application throughput: " + values.length/runtime);
-        float oneway_throughput = ((runtime-start)-response.getTime())/2;
+        float oneway_throughput = (runtime-response.getTime())/2;
 	System.out.println("One way throughput: " + oneway_throughput);
 	System.out.println("Sorted array");
     }
