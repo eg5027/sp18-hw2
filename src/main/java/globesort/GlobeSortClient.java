@@ -40,9 +40,9 @@ public class GlobeSortClient {
 
     public void run(Integer[] values) throws Exception {
         System.out.println("Pinging " + serverStr + "...");
-	long start = System.currentTimeMillis();
+	long start = System.nanoTime();
         serverStub.ping(Empty.newBuilder().build());
-	System.out.println("Latency: " + (System.currentTimeMillis()-start)/1000.0);
+	System.out.println("Latency: " + (System.nanoTime()-start)/1000000000);
         System.out.println("Ping successful.");
 
         System.out.println("Requesting server to sort array");
@@ -53,8 +53,8 @@ public class GlobeSortClient {
 	
 	float finish = System.nanoTime();
 	float runtime = finish - start;
-	System.out.println("Application throughput: " + values.length/runtime);
-        float oneway_throughput = (runtime-response.getTime())/2;
+	System.out.println("Application throughput: " + values.length/runtime*1000000000);
+        float oneway_throughput = (runtime-response.getTime())/2/1000000000;
 	System.out.println("One way throughput: " + oneway_throughput);
 	System.out.println("Sorted array");
     }
