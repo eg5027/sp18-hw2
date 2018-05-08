@@ -57,7 +57,8 @@ public class GlobeSortClient {
 	float invocation = response.getTime();
 	System.out.println("Application throughput: " + 
 		values.length/invocation*1000000000);
-        float oneway_throughput = values.length*4/(runtime-response.getTime())/2/1000000000;
+        float oneway_throughput = 
+            values.length*4/((runtime-invocation)/1000000000)/2;
 	System.out.println("One way throughput: " + oneway_throughput);
 	System.out.println("Sorted array");
     }
